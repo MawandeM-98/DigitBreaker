@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pin Guess Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Pin Guess Game</h1>
+    <nav>
+      <button id="gameBtn" class="active">Game</button>
+      <button id="instructionsBtn">Instructions</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- GAME SECTION -->
+    <section id="gameSection">
+      <h2>Guess the 4-Digit PIN</h2>
+
+      <div class="guess-container">
+        <input maxlength="1" class="digit" id="d1">
+        <input maxlength="1" class="digit" id="d2">
+        <input maxlength="1" class="digit" id="d3">
+        <input maxlength="1" class="digit" id="d4">
+      </div>
+
+      <button id="submitGuess">Submit Guess</button>
+
+      <div id="results"></div>
+      <p id="finalResult"></p>
+    </section>
+
+    <!-- INSTRUCTIONS SECTION -->
+    <section id="instructionsSection" class="hidden">
+      <h2>How the Game Works</h2>
+      <ul>
+        <li>A random **4-digit PIN** is created with **no repeating numbers**.</li>
+        <li>Enter your guess in the 4 boxes.</li>
+        <li>Color meanings:</li>
+      </ul>
+
+      <div class="color-legend">
+        <span class="box green"></span> Correct number & correct position <br>
+        <span class="box orange"></span> Correct number, wrong position <br>
+        <span class="box red"></span> Wrong number
+      </div>
+
+      <p>If you guess the PIN → Your score is **100%**.  
+      If not → **0%**.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
