@@ -3,56 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pin Guess Game</title>
+  <title>DigitBreaker | Crack the 4-Digit PIN</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
   <header>
-    <h1>Pin Guess Game</h1>
+    <h1><i class="fas fa-unlock-alt"></i> DigitBreaker</h1>
     <nav>
-      <button id="gameBtn" class="active">Game</button>
-      <button id="instructionsBtn">Instructions</button>
+      <button id="gameBtn" class="active"><i class="fas fa-gamepad"></i> Game</button>
+      <button id="instructionsBtn"><i class="fas fa-info-circle"></i> Instructions</button>
     </nav>
   </header>
 
   <main>
-    <!-- GAME SECTION -->
     <section id="gameSection">
-      <h2>Guess the 4-Digit PIN</h2>
-
-      <div class="guess-container">
-        <input maxlength="1" class="digit" id="d1">
-        <input maxlength="1" class="digit" id="d2">
-        <input maxlength="1" class="digit" id="d3">
-        <input maxlength="1" class="digit" id="d4">
+      <div class="player-info">
+        <div class="input-group">
+          <label for="firstName"><i class="fas fa-user"></i> First Name:</label>
+          <input type="text" id="firstName" placeholder="Enter first name">
+        </div>
+        <div class="input-group">
+          <label for="surname"><i class="fas fa-id-card"></i> Surname:</label>
+          <input type="text" id="surname" placeholder="Enter surname">
+        </div>
+        <button id="startGame" class="btn-secondary"><i class="fas fa-play"></i> Start Game</button>
       </div>
 
-      <button id="submitGuess">Submit Guess</button>
+      <div class="game-container">
+        <h2><i class="fas fa-crosshairs"></i> Crack the 4-Digit PIN</h2>
+        <p class="attempt-counter">Attempts: <span id="attemptCount">0</span>/4</p>
+        
+        <div class="pin-display">
+          <div class="digit-box" id="pin1">?</div>
+          <div class="digit-box" id="pin2">?</div>
+          <div class="digit-box" id="pin3">?</div>
+          <div class="digit-box" id="pin4">?</div>
+        </div>
 
-      <div id="results"></div>
-      <p id="finalResult"></p>
+        <div class="guess-container">
+          <input type="text" maxlength="1" class="digit" id="d1" disabled>
+          <input type="text" maxlength="1" class="digit" id="d2" disabled>
+          <input type="text" maxlength="1" class="digit" id="d3" disabled>
+          <input type="text" maxlength="1" class="digit" id="d4" disabled>
+        </div>
+
+        <button id="submitGuess" class="btn-primary" disabled><i class="fas fa-paper-plane"></i> Submit Guess</button>
+        <button id="resetGame" class="btn-secondary"><i class="fas fa-redo"></i> Reset Game</button>
+
+        <div class="results-container">
+          <h3><i class="fas fa-history"></i> Previous Guesses</h3>
+          <div id="results"></div>
+        </div>
+
+        <div id="finalResult" class="result-message"></div>
+      </div>
     </section>
 
-    <!-- INSTRUCTIONS SECTION -->
     <section id="instructionsSection" class="hidden">
-      <h2>How the Game Works</h2>
-      <ul>
-        <li>A random **4-digit PIN** is created with **no repeating numbers**.</li>
-        <li>Enter your guess in the 4 boxes.</li>
-        <li>Color meanings:</li>
-      </ul>
+      <div class="instructions-container">
+        <h2><i class="fas fa-graduation-cap"></i> How to Play DigitBreaker</h2>
+        
+        <div class="instruction-card">
+          <div class="instruction-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <div class="instruction-content">
+            <h3>Objective</h3>
+            <p>Crack the randomly generated 4-digit PIN. The PIN contains digits 0-9 with no repeating numbers.</p>
+          </div>
+        </div>
 
-      <div class="color-legend">
-        <span class="box green"></span> Correct number & correct position <br>
-        <span class="box orange"></span> Correct number, wrong position <br>
-        <span class="box red"></span> Wrong number
+        <div class="instruction-card">
+          <div class="instruction-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="instruction-content">
+            <h3>Attempts</h3>
+            <p>You have exactly 4 attempts to guess the correct PIN. After 4 failed attempts, the game ends.</p>
+          </div>
+        </div>
+
+        <div class="instruction-card">
+          <div class="instruction-icon">
+            <i class="fas fa-palette"></i>
+          </div>
+          <div class="instruction-content">
+            <h3>Color Feedback System</h3>
+            <div class="color-key">
+              <div class="color-item correct">
+                <div class="color-box green"></div>
+                <span>Green: Correct number, correct position</span>
+              </div>
+              <div class="color-item partial">
+                <div class="color-box orange"></div>
+                <span>Orange: Correct number, wrong position</span>
+              </div>
+              <div class="color-item incorrect">
+                <div class="color-box red"></div>
+                <span>Red: Number not in PIN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="instruction-card">
+          <div class="instruction-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+          <div class="instruction-content">
+            <h3>Getting Started</h3>
+            <p>Enter your first name and surname, then click "Start Game" to begin. Input your guess one digit at a time in the boxes provided.</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <i class="fas fa-lightbulb"></i>
+          <p><strong>Pro Tip:</strong> Use the color feedback to eliminate possibilities and deduce the correct PIN!</p>
+        </div>
       </div>
-
-      <p>If you guess the PIN → Your score is **100%**.  
-      If not → **0%**.</p>
     </section>
   </main>
+
+  <footer>
+    <p>DigitBreaker &copy; 2023 | A logic puzzle challenge</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
